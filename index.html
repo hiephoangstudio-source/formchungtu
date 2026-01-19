@@ -96,11 +96,11 @@
         #form-invoice .sig-note { font-style: italic; font-size: 8pt; margin: 0; } 
         #form-invoice .sig-space { height: 50px; }
 
-        /* ==================== CSS FORM 3 (TỐI ƯU KHÔNG GIAN) ==================== */
+        /* ==================== CSS FORM 3 (TỐI ƯU CỰC ĐẠI - 3MM ALL SIDES) ==================== */
         
-        /* Ghi đè padding trang riêng cho Form 3 để tận dụng tối đa diện tích */
+        /* Ghi đè padding trang riêng cho Form 3: 3mm Top/Bottom, 3mm Left/Right */
         #form-work-wrapper { 
-            padding: 5mm 8mm !important; /* Top/Bottom: 5mm, Left/Right: 8mm */
+            padding: 3mm 3mm !important; /* ĐÃ CHỈNH: 3mm toàn bộ các cạnh */
             height: 100%;
             display: flex; flex-direction: column;
         }
@@ -113,14 +113,12 @@
         #form-work .studio-name { font-size: 10pt; font-weight: bold; display: block; margin-bottom: 1px; }
         #form-work .studio-info { font-size: 9pt; display: block; margin-bottom: 0; }
         
-        /* Tiêu đề chính 14pt */
         #form-work .main-title { 
             font-size: 14pt; font-weight: bold; text-align: center; 
             margin: 3px 0 1px 0; text-transform: uppercase; line-height: 1.1; 
         }
         #form-work .date-sub { font-size: 9pt; font-style: italic; text-align: center; margin-bottom: 4px; }
 
-        /* Khoảng cách các phần co ngắn tối đa */
         #form-work .section-title { 
             font-size: 9pt; font-weight: bold; text-transform: uppercase; 
             background-color: #f0f0f0; border-left: 3px solid #333; 
@@ -133,11 +131,10 @@
         #form-work .value { flex: 1; border-bottom: 1px dotted #999; padding-left: 5px; font-weight: normal; }
         #form-work .value.bold { font-weight: bold; }
 
-        /* Tables Form 3 - Font 8.5pt, Padding 1px 3px */
         #form-work table { width: 100%; border-collapse: collapse; font-size: 8.5pt; } 
         #form-work th, #form-work td { 
             border: 1px solid #000; 
-            padding: 1px 3px; /* Padding cực gọn */
+            padding: 1px 3px; 
             vertical-align: middle; 
         }
         #form-work th { background-color: #eee; font-weight: bold; text-align: center; height: 18px; }
@@ -152,11 +149,10 @@
         
         #form-work .footer-note { font-size: 8.5pt; font-style: italic; margin-top: 3px; text-align: justify; line-height: 1.1; }
 
-        /* Signatures - Fixed height 40px */
         #form-work .signatures { display: flex; justify-content: space-between; margin-top: 8px; text-align: center; }
         #form-work .sig-col { width: 24%; }
         #form-work .sig-title { font-size: 9pt; font-weight: bold; text-transform: uppercase; margin-bottom: 1px; }
-        #form-work .sig-note { font-size: 8.5pt; font-style: italic; font-weight: normal; margin-bottom: 40px; } /* Đúng yêu cầu 40px */
+        #form-work .sig-note { font-size: 8.5pt; font-style: italic; font-weight: normal; margin-bottom: 40px; }
         #form-work .sig-name { font-size: 9pt; font-weight: bold; }
 
 
@@ -168,8 +164,8 @@
             .form-container { display: none !important; }
             .form-container.active { display: block !important; }
             
-            /* Print Specific Overrides for Form 3 */
-            #form-work-wrapper { padding: 5mm 8mm !important; }
+            /* Print Specific Overrides for Form 3: 3mm Padding All Sides */
+            #form-work-wrapper { padding: 3mm 3mm !important; }
         }
     </style>
 </head>
@@ -204,10 +200,10 @@
         <div class="a4-page" id="print-area">
             <div id="form-handover" class="form-container"></div>
             <div id="form-invoice" class="form-container"></div>
-            <!-- Wrapper riêng cho Form 3 để áp dụng lề 5mm -->
+            <!-- Wrapper Form 3 với padding 3mm -->
             <div id="form-work" class="form-container active">
                 <div id="form-work-wrapper">
-                    <!-- Nội dung Form 3 sẽ được JS tạo ra ở đây -->
+                    <!-- Nội dung Form 3 được JS tạo ra -->
                 </div>
             </div>
         </div>
@@ -217,7 +213,6 @@
         const params = new URLSearchParams(window.location.search);
         let currentFormTitle = "";
 
-        // DATA
         const dataCommon = {
             studio_ten: params.get('ten_studio') || "2H STUDIO",
             studio_dc: params.get('dia_chi_studio') || "85 Hồ Văn Huê, P.9, Q.PN, TP.HCM",
@@ -322,7 +317,7 @@
             container.innerHTML=''; container.appendChild(lien1); container.appendChild(sep); container.appendChild(lien2);
         }
 
-        // 3. RENDER FORM XÁC NHẬN CÔNG VIỆC (COMPACT A4)
+        // 3. RENDER FORM XÁC NHẬN CÔNG VIỆC (COMPACT A4 - 3mm Padding)
         function renderWorkConf() {
             const container = document.getElementById('form-work-wrapper');
             const d = new Date(dataCommon.ngay_lap);
@@ -341,12 +336,10 @@
                 </div>
                 <h1 class="main-title">BIÊN BẢN XÁC NHẬN CÔNG VIỆC</h1>
                 <div class="date-sub">${dateStr}</div>
-                
                 <div class="info-grid">
                     <div class="info-row"><span class="label">Khách hàng:</span><span class="value bold" style="margin-right:10px">${dataWork.khach_ten}</span><span class="label">SĐT:</span><span class="value bold" style="flex:0 0 100px">${dataWork.khach_sdt}</span></div>
                     <div class="info-row"><span class="label">Địa chỉ:</span><span class="value">${dataWork.khach_dc}</span></div>
                 </div>
-                
                 <div class="section-title">I. THÔNG TIN DỊCH VỤ</div>
                 <div class="info-grid">
                     <div class="info-row"><span class="label">Hạng mục:</span><span class="value">${dataWork.dich_vu}</span><span class="label" style="margin-left:10px">Gói chụp:</span><span class="value">${dataWork.goi_chup}</span></div>
@@ -354,10 +347,8 @@
                     <div class="info-row"><span class="label">Địa điểm:</span><span class="value">${dataWork.dia_diem}</span></div>
                     <div class="info-row"><span class="label">Ghi chú:</span><span class="value italic">${dataWork.ghi_chu}</span></div>
                 </div>
-                
                 <div class="section-title">II. DANH SÁCH NHÂN VIÊN THỰC HIỆN (EKIP)</div>
                 <table class="ekip-table"><thead><tr><th style="width:40px">STT</th><th style="width:150px">Vị trí / Công việc</th><th>Tên nhân viên</th></tr></thead><tbody>${ekipRows}</tbody></table>
-                
                 <div class="section-title">III. NỘI DUNG CÔNG VIỆC ĐÃ THỰC HIỆN</div>
                 <table class="check-table">
                     <thead><tr><th class="col-time">Thời gian</th><th class="col-role">Phụ trách</th><th>Nội dung</th><th class="col-check">Có</th><th class="col-check">Không</th></tr></thead>
@@ -388,7 +379,6 @@
                         <tr><td>Khách hàng hài lòng về tone makeup và kiểu tóc</td><td></td><td></td></tr>
                     </tbody>
                 </table>
-                
                 <div class="section-title" style="margin-top:2px">IV. ĐÁNH GIÁ CHẤT LƯỢNG</div>
                 <table class="eval-table">
                     <thead><tr><th style="width:20%">HẠNG MỤC / ĐIỂM</th><th style="width:8%">Tốt</th><th style="width:8%">Khá</th><th style="width:8%">TB</th><th style="width:8%">Kém</th><th>Lý do</th></tr></thead>
@@ -400,10 +390,8 @@
                         <tr><td class="center bold">TƯ VẤN VIÊN</td><td></td><td></td><td></td><td></td><td></td></tr>
                     </tbody>
                 </table>
-                
                 <div style="margin-top:2px; font-size:8.5pt"><span class="bold">Khách hàng biết tới Studio qua đâu:</span> &nbsp; [ ] Bạn bè &nbsp; [ ] Facebook &nbsp; [ ] Tiktok &nbsp; [ ] Khác</div>
                 <div class="footer-note">Khách hàng cam kết những nội dung trên hoàn toàn đúng sự thật, trường hợp khách hàng khiếu nại khác các hạng mục đã đánh giá sau khi phiếu đánh giá được ký xác nhận sẽ không được chấp nhận. 2H Studio xin cảm ơn quý khách hàng đã tin tưởng và sử dụng dịch vụ tại studio.</div>
-                
                 <div class="signatures">
                     <div class="sig-col"><div class="sig-title">KHÁCH HÀNG</div><div class="sig-note">(Ký, xác nhận)</div><div class="sig-name">${dataWork.khach_ten}</div></div>
                     <div class="sig-col"><div class="sig-title">NHIẾP ẢNH GIA</div><div class="sig-note">(Ký, xác nhận)</div><div class="sig-name">${dataWork.nv_chinh}</div></div>
