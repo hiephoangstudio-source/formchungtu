@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hệ Thống In Biểu Mẫu Tổng Hợp</title>
+    <title>Hệ Thống In Biểu Mẫu</title>
     
-    <!-- Thư viện hỗ trợ xuất PDF -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     
     <style>
@@ -20,10 +19,9 @@
             margin: 0; padding: 0; 
         }
 
-        /* --- CẤU HÌNH TRANG IN --- */
         @page { size: A4 portrait; margin: 0; }
 
-        /* --- TOOLBAR --- */
+        /* TOOLBAR */
         .actions-container { 
             position: sticky; top: 0; 
             display: flex; align-items: center; justify-content: center; gap: 15px;
@@ -54,35 +52,24 @@
         .form-container.active { display: block !important; }
         .hidden { display: none !important; }
 
-        /* --- XỬ LÝ CHIA 2 LIÊN --- */
+        /* LAYOUT 2 LIÊN */
         .voucher-section-half { 
             height: 48%; 
             display: flex; flex-direction: column; 
             padding: 0 2px; 
             overflow: hidden; 
         }
+        .voucher-section-half.top { padding-bottom: 10px; }
+        .voucher-section-half.bottom { padding-top: 25px; }
 
-        /* Class chỉnh khoảng cách để tránh dính đường cắt (YÊU CẦU 3) */
-        .voucher-section-half.top {
-            padding-bottom: 10px; /* Cách đường cắt bên dưới một chút */
-        }
-        .voucher-section-half.bottom {
-            padding-top: 25px; /* Đẩy nội dung xuống xa đường cắt hơn */
-        }
-
-        .middle-gap { 
-            height: 4%; 
-            display: flex; align-items: center; justify-content: center; width: 100%; 
-        }
+        .middle-gap { height: 4%; display: flex; align-items: center; justify-content: center; width: 100%; }
         .cut-line { width: 100%; border-top: 1px dashed #000; height: 1px; }
 
         .center { text-align: center; }
         .right { text-align: right; }
         .bold { font-weight: bold; }
 
-        /* ==========================================================================
-           FORM 1: GIAO NHẬN (GIỮ NGUYÊN)
-           ========================================================================== */
+        /* FORM 1 CSS */
         #form-handover { font-size: 10pt; line-height: 1.25; padding: 10mm 15mm; }
         #form-handover .header-section { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
         #form-handover .header-left { flex: 1; }
@@ -110,9 +97,7 @@
         #form-handover .sig-role { font-weight: bold; font-size: 10pt; margin-bottom: 2px; }
         #form-handover .sig-note { font-style: italic; font-size: 9pt; margin-bottom: 35px; } 
 
-        /* ==========================================================================
-           FORM 2: HÓA ĐƠN THANH TOÁN (UPDATED SPACING & REMOVED LIEN INFO)
-           ========================================================================== */
+        /* FORM 2 CSS */
         #form-invoice { font-size: 9.5pt; line-height: 1.15; padding: 5mm 10mm; display: flex; flex-direction: column; justify-content: flex-start; }
         #form-invoice .header-section { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 2px; }
         #form-invoice .header-left { flex: 1; text-align: left; }
@@ -136,48 +121,29 @@
         #form-invoice .sig-note { font-style: italic; font-size: 8pt; margin: 0 0 80px 0; } 
         #form-invoice .sig-name { font-weight: bold; font-size: 9.5pt; }
 
-        /* ==========================================================================
-           FORM 3: XÁC NHẬN CÔNG VIỆC (UPDATED: NO BORDER, SPACING, NO LIEN TEXT)
-           ========================================================================== */
+        /* FORM 3 CSS */
         #form-work { font-size: 10pt; line-height: 1.3; padding: 5mm 10mm; display: flex; flex-direction: column; justify-content: flex-start; }
-        
         #form-work .header-section { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 5px; padding-bottom: 5px; border-bottom: 1px double #ccc; }
         #form-work .studio-name { font-weight: bold; font-size: 11pt; text-transform: uppercase; display: block; margin-bottom: 2px; color: #333; }
         #form-work .studio-info { display: block; font-size: 9.5pt; margin-bottom: 1px; color: #555; }
         #form-work .voucher-num-line { font-size: 9.5pt; margin-bottom: 2px; text-align: right; }
-        
         #form-work .title-section { text-align: center; margin-bottom: 10px; margin-top: 5px; }
         #form-work .main-title { font-size: 16pt; font-weight: bold; text-transform: uppercase; margin: 0; line-height: 1.2; letter-spacing: 0.5px; }
         #form-work .date-sub { font-style: italic; font-size: 10pt; margin-top: 2px; }
-
-        /* YÊU CẦU 2: BỎ KHUNG BO Ở THÔNG TIN KHÁCH HÀNG */
-        #form-work .customer-box { 
-            margin-bottom: 10px; 
-            border: none; /* Đã bỏ viền */
-            padding: 0;   /* Bỏ padding để sát lề hơn */
-            background: transparent; 
-        }
-
+        #form-work .customer-box { margin-bottom: 10px; border: none; padding: 0; background: transparent; }
         #form-work .info-row { display: flex; margin-bottom: 4px; align-items: baseline;}
         #form-work .info-row:last-child { margin-bottom: 0; }
         #form-work .info-label { font-weight: bold; font-size: 10pt; white-space: nowrap; margin-right: 8px; min-width: 85px; }
-        #form-work .info-val { font-weight: normal; font-size: 10pt; border-bottom: 1px dotted #999; flex: 1; }
-
+        #form-work .info-val { font-weight: normal; font-size: 10pt; border-bottom: 1px dotted #999; flex: 1; min-height: 18px; }
         #form-work .section-title { font-weight: bold; font-size: 10pt; text-transform: uppercase; margin: 8px 0 5px 0; border-left: 4px solid #333; padding-left: 8px; background: #eee; line-height: 1.5; }
-
-        /* Service Grid */
         #form-work .service-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5px 20px; margin-bottom: 8px; }
         #form-work .svc-item { display: flex; align-items: baseline; }
         #form-work .svc-label { font-weight: bold; font-size: 10pt; margin-right: 5px; color: #333; min-width: 70px; }
-        #form-work .svc-val { font-size: 10pt; font-weight: normal; border-bottom: 1px dashed #ccc; flex: 1; }
+        #form-work .svc-val { font-size: 10pt; font-weight: normal; border-bottom: 1px dashed #ccc; flex: 1; min-height: 18px; }
         #form-work .svc-full { grid-column: 1 / -1; display: flex; align-items: baseline; }
-
-        /* Ekip Table */
         #form-work table.ekip-table { width: 100%; border-collapse: collapse; font-size: 10pt; margin-top: 2px; }
         #form-work table.ekip-table th { border: 1px solid #000; padding: 4px; background: #f0f0f0; font-weight: bold; text-align: center; }
-        #form-work table.ekip-table td { border: 1px solid #000; padding: 4px 8px; vertical-align: middle; }
-        
-        /* Signatures */
+        #form-work table.ekip-table td { border: 1px solid #000; padding: 4px 8px; vertical-align: middle; height: 30px;} /* Height để khi trống vẫn đẹp */
         #form-work .signatures { display: flex; justify-content: space-between; text-align: center; margin-top: 15px; }
         #form-work .sig-col { width: 32%; }
         #form-work .sig-title { font-weight: bold; font-size: 9.5pt; text-transform: uppercase; margin-bottom: 2px; }
@@ -185,7 +151,6 @@
         #form-work .sig-note { font-style: italic; font-size: 9pt; margin-top: -2px; color: #555; }
         #form-work .sig-name { font-weight: bold; font-size: 10pt; margin-top: 2px; }
 
-        /* PRINT MODE */
         @media print {
             body, html { margin: 0; padding: 0; background: #fff; height: 100%; }
             .actions-container { display: none !important; }
@@ -198,7 +163,6 @@
 </head>
 <body>
 
-    <!-- TOOLBAR -->
     <div class="actions-container">
         <div class="control-group">
             <span class="control-label">📑 Chọn Mẫu:</span>
@@ -208,7 +172,6 @@
                 <option value="form-work">3. Xác Nhận Công Việc</option>
             </select>
         </div>
-
         <div id="invoice-controls" class="control-group hidden">
             <span class="control-label">🖨️ In Hóa Đơn:</span>
             <select id="invoice-print-mode" class="mode-select" onchange="changeInvoiceMode(this.value)">
@@ -217,7 +180,6 @@
                 <option value="lien2">Chỉ Liên 2</option>
             </select>
         </div>
-
         <div id="work-controls" class="control-group hidden">
             <span class="control-label">🖨️ In Xác Nhận CV:</span>
             <select id="work-print-mode" class="mode-select" onchange="changeWorkMode(this.value)">
@@ -226,20 +188,16 @@
                 <option value="lien2">Chỉ Liên 2</option>
             </select>
         </div>
-
         <button onclick="window.print()" class="action-btn">🖨️ In Ngay</button>
         <button onclick="downloadPDF()" class="action-btn">📥 Tải PDF</button>
     </div>
 
-    <!-- MAIN PAGE -->
     <div class="page-wrapper">
         <div class="a4-page" id="print-area">
-            
-            <!-- FORM 1: GIAO NHẬN -->
             <div id="form-handover" class="form-container active">
                 <div class="header-section">
                     <div class="header-left">
-                        <span class="studio-name" id="f1-ten-studio">2H STUDIO</span>
+                        <span class="studio-name" id="f1-ten-studio"></span>
                         <span class="studio-info">ĐC: <span id="f1-dc-studio"></span></span>
                         <span class="studio-info">Email: <span id="f1-email-studio"></span></span>
                         <span class="studio-info">Hotline: <span id="f1-hl-studio"></span></span>
@@ -263,33 +221,20 @@
                     </div>
                 </div>
                 <table class="handover-table">
-                    <thead>
-                        <tr><th style="width: 35px;">STT</th><th>Tên vật tư, dụng cụ, sản phẩm</th><th style="width: 50px;">Số lượng<br>xuất</th><th style="width: 70px;">Đơn giá</th><th style="width: 80px;">Thành tiền</th><th style="width: 50px;">Số lượng<br>nhận</th><th style="width: 80px;">Ghi chú</th></tr>
-                    </thead>
+                    <thead><tr><th style="width: 35px;">STT</th><th>Tên vật tư, dụng cụ, sản phẩm</th><th style="width: 50px;">SL</th><th style="width: 70px;">Đơn giá</th><th style="width: 80px;">Thành tiền</th><th style="width: 50px;">Thực nhận</th><th style="width: 80px;">Ghi chú</th></tr></thead>
                     <tbody id="f1-table-body"></tbody>
                 </table>
                 <div class="signature-block-wrapper">
                     <div class="sig-section">
                         <div class="sig-header-row"><span class="sig-section-title">1. Xuất hàng:</span><span class="sig-date-line">Xuất ngày…… tháng …… năm …..</span></div>
-                        <div class="sig-grid"><div class="sig-col"><div class="sig-role">Người lập phiếu</div><div class="sig-note">(Ký, họ tên)</div></div><div class="sig-col"><div class="sig-role">Người giao hàng</div><div class="sig-note">(Ký, họ tên)</div></div><div class="sig-col"><div class="sig-role">Người nhận hàng</div><div class="sig-note">(Ký, họ tên)</div></div><div class="sig-col"><div class="sig-role">Kế toán trưởng</div><div class="sig-note">(Ký, họ tên)</div></div><div class="sig-col"><div class="sig-role">Đại diện Studio</div><div class="sig-note">(Ký, đóng dấu)</div></div></div>
-                    </div>
-                    <div class="sig-section">
-                        <div class="sig-header-row"><span class="sig-section-title">2. Nhập hàng:</span><span class="sig-date-line">Nhập ngày…… tháng …… năm …..</span></div>
-                        <div class="sig-grid"><div class="sig-col"><div class="sig-role">Người lập phiếu</div><div class="sig-note">(Ký, họ tên)</div></div><div class="sig-col"><div class="sig-role">Người giao hàng</div><div class="sig-note">(Ký, họ tên)</div></div><div class="sig-col"><div class="sig-role">Người nhận hàng</div><div class="sig-note">(Ký, họ tên)</div></div><div class="sig-col"><div class="sig-role">Kế toán trưởng</div><div class="sig-note">(Ký, họ tên)</div></div><div class="sig-col"><div class="sig-role">Đại diện Studio</div><div class="sig-note">(Ký, đóng dấu)</div></div></div>
-                    </div>
-                    <div class="sig-section">
-                        <div class="sig-header-row"><span class="sig-section-title">3. Hàng mất hỏng:</span><span class="sig-date-line">Ký nhận ngày…… tháng …… năm …..</span></div>
-                        <div class="sig-grid"><div class="sig-col"><div class="sig-role">Người lập phiếu</div><div class="sig-note">(Ký, họ tên)</div></div><div class="sig-col"><div class="sig-role">Người giao hàng</div><div class="sig-note">(Ký, họ tên)</div></div><div class="sig-col"><div class="sig-role">Người nhận hàng</div><div class="sig-note">(Ký, họ tên)</div></div><div class="sig-col"><div class="sig-role">Kế toán trưởng</div><div class="sig-note">(Ký, họ tên)</div></div><div class="sig-col"><div class="sig-role">Đại diện Studio</div><div class="sig-note">(Ký, đóng dấu)</div></div></div>
+                        <div class="sig-grid"><div class="sig-col"><div class="sig-role">Người lập phiếu</div></div><div class="sig-col"><div class="sig-role">Người giao hàng</div></div><div class="sig-col"><div class="sig-role">Người nhận hàng</div></div><div class="sig-col"><div class="sig-role">Kế toán trưởng</div></div><div class="sig-col"><div class="sig-role">Đại diện Studio</div></div></div>
+                        <div class="sig-note center" style="margin-top:40px">(Ký, họ tên)</div>
                     </div>
                 </div>
             </div>
 
-            <!-- FORM 2: HÓA ĐƠN -->
             <div id="form-invoice" class="form-container"></div>
-
-            <!-- FORM 3: XÁC NHẬN CV -->
             <div id="form-work" class="form-container"></div>
-
         </div>
     </div>
 
@@ -297,60 +242,72 @@
         const params = new URLSearchParams(window.location.search);
         let currentFormTitle = "";
 
-        // DATA MOCK
+        // ----- CẤU HÌNH DATA (ĐÃ XÓA DEMO INFO) -----
+        
+        // 1. GIAO NHẬN
         const dataHandover = {
             id_phieu: params.get('id') || "..........",
             ngay_lap: params.get('ngay') || new Date().toISOString().split('T')[0],
+            // Thông tin Studio mặc định
             studio_ten: params.get('ten_studio') || "2H STUDIO",
-            studio_dc: params.get('dia_chi_studio') || "",
+            studio_dc: params.get('dia_chi_studio') || "85 Hồ Văn Huê",
             studio_email: params.get('email_studio') || "",
-            studio_hl: params.get('hotline_studio') || "",
+            studio_hl: params.get('hotline_studio') || "037 893 2005",
         };
 
-        const chiNhanhHD = (params.get('chi_nhanh') || "HC").toUpperCase();
+        // 2. HÓA ĐƠN
         const dataInvoice = {
             meta: {
-                so_phieu: chiNhanhHD === "SG" ? "SG..........." : "HC...........",
+                so_phieu: params.get('so_hd') || "..........",
                 ma_hd: params.get('ma_hd') || params.get('id') || "..........",
                 ngay_lap: params.get('ngay') || new Date().toISOString().split('T')[0],
             },
             seller: {
                 ten: params.get('ten_studio') || "2H STUDIO",
-                email: params.get('email_studio') || "",
-                sdt: params.get('hotline_studio') || params.get('sdt_studio') || "",
-                dia_chi: params.get('dia_chi_studio') || params.get('diachi_studio') || ""
+                email: params.get('email_studio') || "2hstudio.wedding@gmail.com",
+                sdt: params.get('hotline_studio') || "037 893 2005",
+                dia_chi: params.get('dia_chi_studio') || "85 Hồ Văn Huê, Phú Nhuận, HCM"
             },
             buyer: { 
-                ten: params.get('khach') || "Khách lẻ", 
+                ten: params.get('khach') || "", // ĐÃ XÓA DEMO
                 sdt: params.get('sdt') || "",
                 dia_chi: params.get('diachi') || ""
             }
         };
 
+        // 3. XÁC NHẬN CÔNG VIỆC (ĐÃ XÓA DEMO)
         const dataWork = {
-            id_cv: params.get('id') || "CV-2026-001",
+            id_cv: params.get('id') || "..........", // ĐÃ XÓA
             ngay_lap: params.get('ngay_tao') || new Date().toISOString().split('T')[0],
-            nguoi_tao: params.get('nguoi_tao') || "Admin",
-            studio_ten: params.get('ten_studio') || "2H Studio - Sài gòn",
+            nguoi_tao: params.get('nguoi_tao') || "", // ĐÃ XÓA
+            
+            studio_ten: params.get('ten_studio') || "2H STUDIO - SÀI GÒN",
             studio_dc: params.get('dia_chi_studio') || "85 Hồ Văn Huê",
             studio_email: params.get('email_studio') || "2hstudio.wedding@gmail.com",
             studio_hl: params.get('hotline_studio') || "037 893 2005",
-            khach_ten: params.get('khach') || "Nguyễn Văn A - Lê Thị B",
-            khach_sdt: params.get('sdt') || "0909000xxx",
-            khach_dc: params.get('diachi') || "Quận 1, TP.HCM",
-            dich_vu: params.get('dv') || "Chụp Album Pre-Wedding",
-            ngay_thuc_hien: params.get('ngay_lam') || "30/01/2026",
-            dia_diem: params.get('diadiem') || "Phim trường ABC",
-            goi_chup: params.get('goi') || "Gói Premium",
-            thoi_gian: params.get('time') || "08:00 - 17:00",
-            ghi_chu: params.get('ghichu') || "Khách yêu cầu chụp style Hàn Quốc nhẹ nhàng.",
-            ekip: [
-                { role: "Photographer Chính", name: params.get('nv') || "Nguyễn Văn Chụp" },
-                { role: "Makeup Artist", name: "Trần Thị Phấn" },
-                { role: "Phụ máy / Lighting", name: "Lê Văn Đèn" },
-                { role: "Stylist", name: "" }
-            ]
+            
+            khach_ten: params.get('khach') || "", // ĐÃ XÓA
+            khach_sdt: params.get('sdt') || "",   // ĐÃ XÓA
+            khach_dc: params.get('diachi') || "", // ĐÃ XÓA
+            
+            dich_vu: params.get('dv') || "",        // ĐÃ XÓA
+            ngay_thuc_hien: params.get('ngay_lam') || "", // ĐÃ XÓA
+            dia_diem: params.get('diadiem') || "",  // ĐÃ XÓA
+            goi_chup: params.get('goi') || "",      // ĐÃ XÓA
+            thoi_gian: params.get('time') || "",    // ĐÃ XÓA
+            ghi_chu: params.get('ghichu') || "",    // ĐÃ XÓA
+            
+            // Ekip sẽ lấy từ params nếu có, không thì rỗng
+            ekip: [] 
         };
+
+        // Nếu có param nv (nhân viên chính), thêm vào list
+        if(params.get('nv')) {
+            dataWork.ekip.push({ role: "Thợ chính", name: params.get('nv') });
+        }
+
+
+        // ----- RENDER FUNCTIONS -----
 
         function renderHandover() {
             document.getElementById('f1-so-phieu').textContent = dataHandover.id_phieu;
@@ -383,7 +340,6 @@
                 rowsHtml += `<tr><td class="center">${i+1}</td><td></td><td></td><td></td><td></td></tr>`;
             }
 
-            // YÊU CẦU 1: BỎ LIÊN INFO
             return `
                 <div class="header-section">
                     <div class="header-left">
@@ -433,27 +389,12 @@
         function renderInvoice() {
             const container = document.getElementById('form-invoice');
             
-            // YÊU CẦU 3: THÊM CLASS .top CHO LIÊN 1
-            const lien1Div = document.createElement('div'); 
-            lien1Div.id = 'inv-lien-1'; 
-            lien1Div.className = 'voucher-section-half top'; 
-            lien1Div.innerHTML = createInvoiceHtml();
-            
-            const sepDiv = document.createElement('div'); 
-            sepDiv.id = 'inv-separator'; 
-            sepDiv.className = 'middle-gap';
-            sepDiv.innerHTML = `<div class="cut-line"></div>`;
-
-            // YÊU CẦU 3: THÊM CLASS .bottom CHO LIÊN 2 (TĂNG PADDING TOP)
-            const lien2Div = document.createElement('div'); 
-            lien2Div.id = 'inv-lien-2'; 
-            lien2Div.className = 'voucher-section-half bottom'; 
-            lien2Div.innerHTML = createInvoiceHtml();
+            const lien1Div = document.createElement('div'); lien1Div.id = 'inv-lien-1'; lien1Div.className = 'voucher-section-half top'; lien1Div.innerHTML = createInvoiceHtml();
+            const sepDiv = document.createElement('div'); sepDiv.id = 'inv-separator'; sepDiv.className = 'middle-gap'; sepDiv.innerHTML = `<div class="cut-line"></div>`;
+            const lien2Div = document.createElement('div'); lien2Div.id = 'inv-lien-2'; lien2Div.className = 'voucher-section-half bottom'; lien2Div.innerHTML = createInvoiceHtml();
 
             container.innerHTML = '';
-            container.appendChild(lien1Div);
-            container.appendChild(sepDiv);
-            container.appendChild(lien2Div);
+            container.appendChild(lien1Div); container.appendChild(sepDiv); container.appendChild(lien2Div);
         }
 
         function changeInvoiceMode(mode) {
@@ -471,14 +412,15 @@
             const dateStr = `Ngày ${d.getDate().toString().padStart(2,'0')} tháng ${(d.getMonth()+1).toString().padStart(2,'0')} năm ${d.getFullYear()}`;
             
             let ekipRows = "";
+            // Render Ekip từ dữ liệu thật
             dataWork.ekip.forEach((member, index) => {
                 ekipRows += `<tr><td class="center">${index + 1}</td><td>${member.role}</td><td>${member.name}</td></tr>`;
             });
+            // Render dòng trống
             for(let i = dataWork.ekip.length; i < 4; i++) {
                 ekipRows += `<tr><td class="center">${i+1}</td><td></td><td></td></tr>`;
             }
 
-            // YÊU CẦU 1: BỎ LIÊN INFO, YÊU CẦU 2: ĐÃ XỬ LÝ CSS CUSTOMER-BOX
             return `
                 <div class="header-section">
                     <div>
@@ -532,27 +474,12 @@
 
         function renderWorkConf() {
             const container = document.getElementById('form-work');
-            
-            // YÊU CẦU 3: THÊM CLASS .top và .bottom ĐỂ CHỈNH KHOẢNG CÁCH
-            const wLien1 = document.createElement('div'); 
-            wLien1.id = 'work-lien-1'; 
-            wLien1.className = 'voucher-section-half top';
-            wLien1.innerHTML = createWorkHtml();
-
-            const sepDiv = document.createElement('div'); 
-            sepDiv.id = 'work-separator'; 
-            sepDiv.className = 'middle-gap';
-            sepDiv.innerHTML = `<div class="cut-line"></div>`;
-
-            const wLien2 = document.createElement('div'); 
-            wLien2.id = 'work-lien-2'; 
-            wLien2.className = 'voucher-section-half bottom';
-            wLien2.innerHTML = createWorkHtml();
+            const wLien1 = document.createElement('div'); wLien1.id = 'work-lien-1'; wLien1.className = 'voucher-section-half top'; wLien1.innerHTML = createWorkHtml();
+            const sepDiv = document.createElement('div'); sepDiv.id = 'work-separator'; sepDiv.className = 'middle-gap'; sepDiv.innerHTML = `<div class="cut-line"></div>`;
+            const wLien2 = document.createElement('div'); wLien2.id = 'work-lien-2'; wLien2.className = 'voucher-section-half bottom'; wLien2.innerHTML = createWorkHtml();
 
             container.innerHTML = '';
-            container.appendChild(wLien1);
-            container.appendChild(sepDiv);
-            container.appendChild(wLien2);
+            container.appendChild(wLien1); container.appendChild(sepDiv); container.appendChild(wLien2);
         }
 
         function changeWorkMode(mode) {
