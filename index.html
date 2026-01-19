@@ -43,7 +43,7 @@
             margin: auto;
             overflow: hidden; 
             position: relative;
-            padding: 10mm 12mm;
+            padding: 10mm 12mm; /* Mặc định */
         }
 
         .form-container { display: none !important; width: 100%; height: 100%; }
@@ -60,11 +60,8 @@
         #form-handover { padding: 0; font-size: 10pt; } 
         #form-handover .header-section { display: flex; justify-content: space-between; margin-bottom: 10px; }
         #form-handover .main-title { font-size: 18pt; font-weight: bold; text-align: center; text-transform: uppercase; margin: 0; }
-        
         #form-handover table { width: 100%; border-collapse: collapse; margin-top: 10px; margin-bottom: 10px; font-size: 10pt; }
         #form-handover th, #form-handover td { border: 1px solid #000; padding: 4px; text-align: center; vertical-align: middle; }
-        
-        /* Chữ ký Form 1 (3 phần) */
         #form-handover .sig-block { margin-top: 15px; }
         #form-handover .sig-header-row { display: flex; justify-content: space-between; margin-bottom: 5px; align-items: flex-end;}
         #form-handover .sig-section-title { font-weight: bold; font-size: 11pt; text-decoration: underline; }
@@ -72,7 +69,7 @@
         #form-handover .sig-col { width: 19%; }
         #form-handover .sig-role { font-weight: bold; font-size: 10pt; margin-bottom: 2px; }
         #form-handover .sig-note { font-style: italic; font-size: 9pt; }
-        #form-handover .sig-space { height: 40px; } /* Khoảng trống ký cho form 1 */
+        #form-handover .sig-space { height: 40px; }
 
         /* ==================== CSS FORM 2 (HÓA ĐƠN) ==================== */
         .voucher-section-half { height: 48%; display: flex; flex-direction: column; padding: 0 2px; overflow: hidden; }
@@ -84,51 +81,70 @@
         #form-invoice { padding: 0; font-size: 9.5pt; }
         #form-invoice .header-section { display: flex; justify-content: space-between; margin-bottom: 2px; }
         #form-invoice .main-title { font-size: 16pt; font-weight: bold; text-transform: uppercase; margin: 0; text-align: center; margin-bottom: 2px; }
-        
-        /* Info Grid Form 2 */
         #form-invoice .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 2px; }
         #form-invoice .form-row { display: flex; align-items: baseline; margin-bottom: 2px; }
         #form-invoice .label { font-weight: normal; min-width: 60px; }
         #form-invoice .value { flex: 1; border-bottom: 1px dotted #000; padding-left: 5px; font-weight: bold; font-size: 9.5pt; }
-
         #form-invoice table { width: 100%; border-collapse: collapse; margin-top: 2px; font-size: 9.5pt; }
         #form-invoice th, #form-invoice td { border: 1px solid #000; padding: 3px; vertical-align: middle; }
-        #form-invoice td { height: 20px; } /* Giới hạn chiều cao dòng để tiết kiệm chỗ */
-
-        /* Chữ ký Form 2 (5 cột) */
+        #form-invoice td { height: 20px; }
         #form-invoice .signatures { display: flex; justify-content: space-between; text-align: center; margin-top: 5px; }
         #form-invoice .sig-col { width: 19%; }
         #form-invoice .sig-title { font-weight: bold; font-size: 8pt; text-transform: uppercase; margin-bottom: 1px; }
         #form-invoice .sig-note { font-style: italic; font-size: 8pt; margin: 0; } 
-        #form-invoice .sig-space { height: 50px; } /* QUAN TRỌNG: Khoảng trống để ký */
+        #form-invoice .sig-space { height: 50px; }
 
-        /* ==================== CSS FORM 3 (CHECKLIST) ==================== */
-        #form-work .header-section { display: flex; justify-content: space-between; border-bottom: 1px solid #ccc; padding-bottom: 5px; margin-bottom: 5px; }
-        #form-work .studio-name { font-size: 11pt; font-weight: bold; display: block; margin-bottom: 2px; }
-        #form-work .studio-info { font-size: 10pt; display: block; margin-bottom: 1px; }
-        #form-work .main-title { font-size: 16pt; font-weight: bold; text-align: center; margin: 0; text-transform: uppercase; line-height: 1.2; }
-        #form-work .date-sub { font-size: 10pt; font-style: italic; text-align: center; margin-bottom: 8px; }
-        #form-work .section-title { font-size: 10pt; font-weight: bold; text-transform: uppercase; background-color: #f0f0f0; border-left: 4px solid #333; padding: 3px 8px; margin: 6px 0 4px 0; }
-        #form-work .info-grid { display: flex; flex-wrap: wrap; margin-bottom: 5px; font-size: 9.5pt; line-height: 1.3; }
-        #form-work .info-row { width: 100%; display: flex; align-items: baseline; margin-bottom: 3px; }
-        #form-work .label { font-weight: bold; min-width: 80px; }
+        /* ==================== CSS FORM 3 (CHECKLIST - COMPACT MODE) ==================== */
+        /* Ghi đè padding trang riêng cho Form 3 để tiết kiệm không gian */
+        #form-work-wrapper { 
+            padding: 5mm 10mm !important; /* Lề hẹp hơn mặc định */
+            height: 100%;
+        }
+
+        #form-work .header-section { display: flex; justify-content: space-between; border-bottom: 1px solid #ccc; padding-bottom: 2px; margin-bottom: 2px; }
+        #form-work .studio-name { font-size: 10pt; font-weight: bold; display: block; margin-bottom: 1px; }
+        #form-work .studio-info { font-size: 9pt; display: block; margin-bottom: 0; }
+        
+        #form-work .main-title { font-size: 14pt; font-weight: bold; text-align: center; margin: 2px 0 0 0; text-transform: uppercase; line-height: 1.2; }
+        #form-work .date-sub { font-size: 9pt; font-style: italic; text-align: center; margin-bottom: 4px; }
+
+        #form-work .section-title { 
+            font-size: 9pt; font-weight: bold; text-transform: uppercase; 
+            background-color: #f0f0f0; border-left: 3px solid #333; 
+            padding: 2px 5px; margin: 4px 0 2px 0; 
+        }
+
+        #form-work .info-grid { display: flex; flex-wrap: wrap; margin-bottom: 2px; font-size: 9pt; line-height: 1.25; }
+        #form-work .info-row { width: 100%; display: flex; align-items: baseline; margin-bottom: 2px; }
+        #form-work .label { font-weight: bold; min-width: 70px; }
         #form-work .value { flex: 1; border-bottom: 1px dotted #999; padding-left: 5px; font-weight: normal; }
         #form-work .value.bold { font-weight: bold; }
-        #form-work table { width: 100%; border-collapse: collapse; font-size: 9.5pt; }
-        #form-work th, #form-work td { border: 1px solid #000; padding: 3px 5px; vertical-align: middle; }
-        #form-work th { background-color: #eee; font-weight: bold; text-align: center; height: 25px; }
-        #form-work .ekip-table td { height: 22px; }
-        #form-work .check-table td { padding: 3px 5px; }
+
+        /* Tables Form 3 */
+        #form-work table { width: 100%; border-collapse: collapse; font-size: 8.5pt; } /* Font nhỏ cho bảng */
+        #form-work th, #form-work td { border: 1px solid #000; padding: 1px 3px; vertical-align: middle; } /* Padding nhỏ */
+        #form-work th { background-color: #eee; font-weight: bold; text-align: center; height: 20px; }
+
+        /* Ekip Table */
+        #form-work .ekip-table td { height: 18px; }
+
+        /* Checklist Table */
         #form-work .check-table .col-time { width: 10%; text-align: center; font-weight: bold; background: #f9f9f9; }
         #form-work .check-table .col-role { width: 13%; text-align: center; font-weight: bold; }
-        #form-work .check-table .col-check { width: 5%; text-align: center; }
-        #form-work .eval-table th { font-size: 9pt; }
-        #form-work .footer-note { font-size: 9pt; font-style: italic; margin-top: 5px; text-align: justify; }
-        #form-work .signatures { display: flex; justify-content: space-between; margin-top: 15px; text-align: center; }
+        #form-work .check-table .col-check { width: 40px; text-align: center; }
+
+        /* Eval Table */
+        #form-work .eval-table th { font-size: 8.5pt; }
+        
+        #form-work .footer-note { font-size: 8.5pt; font-style: italic; margin-top: 3px; text-align: justify; line-height: 1.1; }
+
+        /* Signatures */
+        #form-work .signatures { display: flex; justify-content: space-between; margin-top: 10px; text-align: center; }
         #form-work .sig-col { width: 24%; }
-        #form-work .sig-title { font-size: 9.5pt; font-weight: bold; text-transform: uppercase; margin-bottom: 2px; }
-        #form-work .sig-note { font-size: 9pt; font-style: italic; font-weight: normal; margin-bottom: 70px; }
-        #form-work .sig-name { font-size: 10pt; font-weight: bold; }
+        #form-work .sig-title { font-size: 9pt; font-weight: bold; text-transform: uppercase; margin-bottom: 1px; }
+        #form-work .sig-note { font-size: 8.5pt; font-style: italic; font-weight: normal; margin-bottom: 40px; } /* Khoảng trống 40px là đủ */
+        #form-work .sig-name { font-size: 9pt; font-weight: bold; }
+
 
         @media print {
             body, html { margin: 0; padding: 0; background: #fff; }
@@ -137,6 +153,9 @@
             .a4-page { box-shadow: none; margin: 0; width: 100%; height: auto; }
             .form-container { display: none !important; }
             .form-container.active { display: block !important; }
+            
+            /* Print Specific Overrides */
+            #form-work-wrapper { padding: 5mm 10mm !important; }
         }
     </style>
 </head>
@@ -171,7 +190,12 @@
         <div class="a4-page" id="print-area">
             <div id="form-handover" class="form-container"></div>
             <div id="form-invoice" class="form-container"></div>
-            <div id="form-work" class="form-container active"></div>
+            <!-- Wrapper riêng cho Form 3 để override padding -->
+            <div id="form-work" class="form-container active">
+                <div id="form-work-wrapper">
+                    <!-- Nội dung Form 3 sẽ được inject vào đây -->
+                </div>
+            </div>
         </div>
     </div>
 
@@ -208,25 +232,16 @@
             nv_chinh: params.get('nv') || ""
         };
 
-        // ---------------- RENDER FUNCTIONS ----------------
-
-        // 1. RENDER FORM GIAO NHẬN (CẬP NHẬT CHỮ KÝ 3 PHẦN)
+        // 1. RENDER FORM GIAO NHẬN
         function renderHandover() {
             const container = document.getElementById('form-handover');
             const d = new Date(dataCommon.ngay_lap);
-            // Dòng ngày tháng để dùng cho chữ ký
-            const dateLine = `Ngày ...... tháng ...... năm ......`; 
-            
             let rowsHtml = '';
             for (let i=0; i<10; i++) rowsHtml += `<tr><td>${i+1}</td><td></td><td></td><td></td><td></td><td></td></tr>`;
 
-            // Function tạo khối ký cho từng phần
             const createSigBlock = (title, actionDate) => `
                 <div class="sig-block">
-                    <div class="sig-header-row">
-                        <span class="sig-section-title">${title}</span>
-                        <span class="italic">${actionDate}</span>
-                    </div>
+                    <div class="sig-header-row"><span class="sig-section-title">${title}</span><span class="italic">${actionDate}</span></div>
                     <div class="sig-grid">
                         <div class="sig-col"><div class="sig-role">Người lập phiếu</div><div class="sig-note">(Ký, họ tên)</div><div class="sig-space"></div></div>
                         <div class="sig-col"><div class="sig-role">Người giao hàng</div><div class="sig-note">(Ký, họ tên)</div><div class="sig-space"></div></div>
@@ -234,8 +249,7 @@
                         <div class="sig-col"><div class="sig-role">Kế toán trưởng</div><div class="sig-note">(Ký, họ tên)</div><div class="sig-space"></div></div>
                         <div class="sig-col"><div class="sig-role">Đại diện Studio</div><div class="sig-note">(Ký, đóng dấu)</div><div class="sig-space"></div></div>
                     </div>
-                </div>
-            `;
+                </div>`;
 
             container.innerHTML = `
                 <div class="header-section">
@@ -244,25 +258,19 @@
                 </div>
                 <h1 class="main-title">BẢN GIAO NHẬN VẬT TƯ, TRANG PHỤC</h1>
                 <div class="center italic" style="margin-bottom:15px">Ngày ${d.getDate()} tháng ${d.getMonth()+1} năm ${d.getFullYear()}</div>
-                
                 <div style="margin-bottom:10px;">
                     <div style="display:flex; margin-bottom:5px"><span class="bold" style="min-width:150px">Người nhận hàng:</span><span style="border-bottom:1px dotted #000; flex:1"></span></div>
                     <div style="display:flex; margin-bottom:5px"><span class="bold" style="min-width:150px">Địa chỉ (Bộ phận):</span><span style="border-bottom:1px dotted #000; flex:1"></span></div>
                     <div style="display:flex; margin-bottom:5px"><span class="bold" style="min-width:150px">Lý do xuất hàng:</span><span style="border-bottom:1px dotted #000; flex:1"></span></div>
                 </div>
-                
-                <table>
-                    <thead><tr><th style="width:40px">STT</th><th>Tên hàng hóa - Quy cách</th><th style="width:50px">SL</th><th style="width:100px">Đơn giá</th><th style="width:100px">Thành tiền</th><th style="width:100px">Ghi chú</th></tr></thead>
-                    <tbody>${rowsHtml}</tbody>
-                </table>
-
+                <table><thead><tr><th style="width:40px">STT</th><th>Tên hàng hóa - Quy cách</th><th style="width:50px">SL</th><th style="width:100px">Đơn giá</th><th style="width:100px">Thành tiền</th><th style="width:100px">Ghi chú</th></tr></thead><tbody>${rowsHtml}</tbody></table>
                 ${createSigBlock("1. Xuất hàng:", "Xuất ngày...... tháng ...... năm ......")}
                 ${createSigBlock("2. Nhập hàng:", "Nhập ngày...... tháng ...... năm ......")}
                 ${createSigBlock("3. Hàng mất hỏng:", "Ký nhận ngày...... tháng ...... năm ......")}
             `;
         }
 
-        // 2. RENDER FORM HÓA ĐƠN (CẬP NHẬT 5 CỘT KÝ + KHOẢNG TRỐNG)
+        // 2. RENDER FORM HÓA ĐƠN
         function createInvoiceHtml() {
             const d = new Date(dataCommon.ngay_lap);
             const dateStr = `Ngày ${d.getDate().toString().padStart(2,'0')} tháng ${(d.getMonth()+1).toString().padStart(2,'0')} năm ${d.getFullYear()}`;
@@ -271,32 +279,17 @@
 
             return `
                 <div class="header-section">
-                    <div><span class="bold" style="font-size:11pt">${dataCommon.studio_ten}</span><br>Email: ${params.get('email_studio') || ""}<br>Hotline: ${dataCommon.studio_hl}</div>
+                    <div><span class="bold" style="font-size:11pt">${dataCommon.studio_ten}</span><br>Hotline: ${dataCommon.studio_hl}</div>
                     <div class="right">Quyển số: ..........<br>Số: <span class="bold">${dataInvoice.so_phieu}</span><br>Mã HĐ: <span class="bold">${dataInvoice.ma_hd}</span></div>
                 </div>
                 <h1 class="main-title">HÓA ĐƠN BÁN HÀNG</h1>
                 <div class="center italic" style="font-size:9pt; margin-bottom:5px">${dateStr}</div>
-                
                 <div class="info-grid">
-                    <div>
-                        <div class="form-row"><span class="label">Người bán:</span><span class="value">${dataCommon.studio_ten}</span></div>
-                        <div class="form-row"><span class="label">SĐT:</span><span class="value">${dataCommon.studio_hl}</span></div>
-                        <div class="form-row"><span class="label">Địa chỉ:</span><span class="value">${dataCommon.studio_dc}</span></div>
-                    </div>
-                    <div>
-                        <div class="form-row"><span class="label">Người mua:</span><span class="value">${dataInvoice.khach_ten}</span></div>
-                        <div class="form-row"><span class="label">SĐT:</span><span class="value">${dataInvoice.khach_sdt}</span></div>
-                        <div class="form-row"><span class="label">Địa chỉ:</span><span class="value">${dataInvoice.khach_dc}</span></div>
-                    </div>
+                    <div><div class="form-row"><span class="label">Người bán:</span><span class="value">${dataCommon.studio_ten}</span></div><div class="form-row"><span class="label">SĐT:</span><span class="value">${dataCommon.studio_hl}</span></div><div class="form-row"><span class="label">Địa chỉ:</span><span class="value">${dataCommon.studio_dc}</span></div></div>
+                    <div><div class="form-row"><span class="label">Người mua:</span><span class="value">${dataInvoice.khach_ten}</span></div><div class="form-row"><span class="label">SĐT:</span><span class="value">${dataInvoice.khach_sdt}</span></div><div class="form-row"><span class="label">Địa chỉ:</span><span class="value">${dataInvoice.khach_dc}</span></div></div>
                 </div>
-                
-                <table>
-                    <thead><tr><th style="width:35px">STT</th><th>TÊN HÀNG - DỊCH VỤ</th><th style="width:40px">SL</th><th style="width:80px">ĐƠN GIÁ</th><th style="width:90px">THÀNH TIỀN</th></tr></thead>
-                    <tbody>${rowsHtml}</tbody>
-                    <tfoot><tr><td colspan="4" class="right bold">TỔNG CỘNG</td><td class="bold"></td></tr></tfoot>
-                </table>
+                <table><thead><tr><th style="width:35px">STT</th><th>TÊN HÀNG - DỊCH VỤ</th><th style="width:40px">SL</th><th style="width:80px">ĐƠN GIÁ</th><th style="width:90px">THÀNH TIỀN</th></tr></thead><tbody>${rowsHtml}</tbody><tfoot><tr><td colspan="4" class="right bold">TỔNG CỘNG</td><td class="bold"></td></tr></tfoot></table>
                 <div style="margin-top:2px; font-style:italic; font-size:9pt">Thành tiền (viết bằng chữ): .........................................................................................................................</div>
-                
                 <div class="signatures">
                     <div class="sig-col"><div class="sig-title">NGƯỜI LẬP PHIẾU</div><div class="sig-note">(Ký, họ tên)</div><div class="sig-space"></div></div>
                     <div class="sig-col"><div class="sig-title">NGƯỜI MUA HÀNG</div><div class="sig-note">(Ký, họ tên)</div><div class="sig-space"></div></div>
@@ -314,9 +307,9 @@
             container.innerHTML=''; container.appendChild(lien1); container.appendChild(sep); container.appendChild(lien2);
         }
 
-        // 3. RENDER FORM XÁC NHẬN CÔNG VIỆC (GIỮ NGUYÊN)
+        // 3. RENDER FORM XÁC NHẬN CÔNG VIỆC (COMPACT)
         function renderWorkConf() {
-            const container = document.getElementById('form-work');
+            const container = document.getElementById('form-work-wrapper');
             const d = new Date(dataCommon.ngay_lap);
             const dateStr = `Ngày ${d.getDate().toString().padStart(2,'0')} tháng ${(d.getMonth()+1).toString().padStart(2,'0')} năm ${d.getFullYear()}`;
             const roles = ["Nhiếp ảnh gia", "Makeup", "Phụ tá", "Tư vấn viên"];
@@ -328,11 +321,7 @@
 
             container.innerHTML = `
                 <div class="header-section">
-                    <div>
-                        <span class="studio-name">${dataCommon.studio_ten}</span>
-                        <span class="studio-info">ĐC: ${dataCommon.studio_dc}</span>
-                        <span class="studio-info">Hotline: ${dataCommon.studio_hl}</span>
-                    </div>
+                    <div><span class="studio-name">${dataCommon.studio_ten}</span><span class="studio-info">ĐC: ${dataCommon.studio_dc}</span><span class="studio-info">Hotline: ${dataCommon.studio_hl}</span></div>
                     <div class="right"><span class="bold">Số: ${dataWork.id_cv}</span></div>
                 </div>
                 <h1 class="main-title">BIÊN BẢN XÁC NHẬN CÔNG VIỆC</h1>
@@ -355,14 +344,14 @@
                     <thead><tr><th class="col-time">Thời gian</th><th class="col-role">Phụ trách</th><th>Nội dung</th><th class="col-check">Có</th><th class="col-check">Không</th></tr></thead>
                     <tbody>
                         <tr><td rowspan="14" class="col-time">TRƯỚC<br>BUỔI CHỤP</td><td rowspan="4" class="col-role">TƯ VẤN VIÊN</td><td>Lập nhóm chụp</td><td></td><td></td></tr>
-                        <tr><td>Thông báo chuẩn bị: Giày tây, sơmi trắng/màu, giày cao gót, lens, trang phục tự do...</td><td></td><td></td></tr>
-                        <tr><td>Thông báo thời gian, địa điểm, chi phí di chuyển/vé/ăn uống ekip (nếu có)</td><td></td><td></td></tr>
+                        <tr><td>Thông báo chuẩn bị: Giày tây, sơmi, giày cao gót, lens, trang phục...</td><td></td><td></td></tr>
+                        <tr><td>Thông báo thời gian, địa điểm, chi phí di chuyển/vé/ăn uống ekip</td><td></td><td></td></tr>
                         <tr><td>Giới thiệu ekip (Thông báo ekip trực tiếp tư vấn về hình ảnh và makeup)</td><td></td><td></td></tr>
                         <tr><td rowspan="5" class="col-role">EKIP</td><td>Nhiếp ảnh gia thông báo khách hàng gửi hình ảnh mong muốn chụp vào nhóm</td><td></td><td></td></tr>
                         <tr><td>Nhiếp ảnh gia tư vấn góc chụp phù hợp với điểm chụp</td><td></td><td></td></tr>
                         <tr><td>Nhiếp ảnh gia tư vấn trang phục tự do, phụ kiện deco phù hợp với điểm chụp</td><td></td><td></td></tr>
                         <tr><td>Makeup thông báo khách hàng gửi hình ảnh kiểu tóc, tone makeup vào nhóm</td><td></td><td></td></tr>
-                        <tr><td>Makeup tư vấn thêm: tóc giả, nail, lens, phụ kiện vòng cổ... của khách trước buổi chụp</td><td></td><td></td></tr>
+                        <tr><td>Makeup tư vấn thêm: tóc giả, nail, lens, phụ kiện... của khách trước buổi chụp</td><td></td><td></td></tr>
                         <tr><td rowspan="3" class="col-role">KHÁCH HÀNG</td><td>Gửi yêu cầu và hình ảnh cần chụp</td><td></td><td></td></tr>
                         <tr><td>Gửi yêu cầu về tone makeup, kiểu tóc</td><td></td><td></td></tr>
                         <tr><td>Yêu cầu được tư vấn trước về góc máy, thời gian và địa điểm</td><td></td><td></td></tr>
@@ -380,7 +369,7 @@
                         <tr><td>Khách hàng hài lòng về tone makeup và kiểu tóc</td><td></td><td></td></tr>
                     </tbody>
                 </table>
-                <div class="section-title" style="margin-top:5px">IV. ĐÁNH GIÁ CHẤT LƯỢNG</div>
+                <div class="section-title" style="margin-top:2px">IV. ĐÁNH GIÁ CHẤT LƯỢNG</div>
                 <table class="eval-table">
                     <thead><tr><th style="width:20%">HẠNG MỤC / ĐIỂM</th><th style="width:8%">Tốt</th><th style="width:8%">Khá</th><th style="width:8%">TB</th><th style="width:8%">Kém</th><th>Lý do</th></tr></thead>
                     <tbody>
@@ -391,7 +380,7 @@
                         <tr><td class="center bold">TƯ VẤN VIÊN</td><td></td><td></td><td></td><td></td><td></td></tr>
                     </tbody>
                 </table>
-                <div style="margin-top:5px; font-size:9.5pt"><span class="bold">Khách hàng biết tới Studio qua đâu:</span> &nbsp; [ ] Bạn bè &nbsp; [ ] Facebook &nbsp; [ ] Tiktok &nbsp; [ ] Khác</div>
+                <div style="margin-top:2px; font-size:8.5pt"><span class="bold">Khách hàng biết tới Studio qua đâu:</span> &nbsp; [ ] Bạn bè &nbsp; [ ] Facebook &nbsp; [ ] Tiktok &nbsp; [ ] Khác</div>
                 <div class="footer-note">Khách hàng cam kết những nội dung trên hoàn toàn đúng sự thật, trường hợp khách hàng khiếu nại khác các hạng mục đã đánh giá sau khi phiếu đánh giá được ký xác nhận sẽ không được chấp nhận. 2H Studio xin cảm ơn quý khách hàng đã tin tưởng và sử dụng dịch vụ tại studio.</div>
                 <div class="signatures">
                     <div class="sig-col"><div class="sig-title">KHÁCH HÀNG</div><div class="sig-note">(Ký, xác nhận)</div><div class="sig-name">${dataWork.khach_ten}</div></div>
