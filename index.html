@@ -319,9 +319,9 @@
             const container = document.getElementById('form-work-wrapper');
             const d = new Date(dataCommon.ngay_lap);
             const dateStr = `Ngày ${d.getDate().toString().padStart(2,'0')} tháng ${(d.getMonth()+1).toString().padStart(2,'0')} năm ${d.getFullYear()}`;
-            const roles = ["Nhiếp ảnh gia", "Makeup", "Phụ tá", "Tư vấn viên"];
+            const roles = ["Nhiếp ảnh gia", "Makeup", "Tư vấn viên"];
             let ekipRows = '';
-            for(let i=0; i<4; i++) {
+            for(let i=0; i<3; i++) {
                 let name = (i===0) ? dataWork.nv_chinh : "";
                 ekipRows += `<tr><td class="center">${i+1}</td><td>${roles[i]}</td><td>${name}</td></tr>`;
             }
@@ -350,7 +350,7 @@
                 <table class="check-table">
                     <thead><tr><th class="col-time">Thời gian</th><th class="col-role">Phụ trách</th><th>Nội dung</th><th class="col-check">Có</th><th class="col-check">Không</th></tr></thead>
                     <tbody>
-                        <tr><td rowspan="14" class="col-time">TRƯỚC<br>BUỔI CHỤP</td><td rowspan="4" class="col-role">TƯ VẤN VIÊN</td><td>Lập nhóm chụp</td><td></td><td></td></tr>
+                        <tr><td rowspan="12" class="col-time">TRƯỚC<br>BUỔI CHỤP</td><td rowspan="4" class="col-role">TƯ VẤN VIÊN</td><td>Lập nhóm chụp</td><td></td><td></td></tr>
                         <tr><td>Thông báo chuẩn bị: Giày tây, sơmi trắng/màu, giày cao gót, lens, trang phục...</td><td></td><td></td></tr>
                         <tr><td>Thông báo thời gian, địa điểm, chi phí di chuyển/vé/ăn uống ekip</td><td></td><td></td></tr>
                         <tr><td>Giới thiệu ekip (Thông báo ekip trực tiếp tư vấn về hình ảnh và makeup)</td><td></td><td></td></tr>
@@ -362,8 +362,6 @@
                         <tr><td rowspan="3" class="col-role">KHÁCH HÀNG</td><td>Gửi yêu cầu và hình ảnh cần chụp</td><td></td><td></td></tr>
                         <tr><td>Gửi yêu cầu về tone makeup, kiểu tóc</td><td></td><td></td></tr>
                         <tr><td>Yêu cầu được tư vấn trước về góc máy, thời gian và địa điểm</td><td></td><td></td></tr>
-                        <tr><td rowspan="2" class="col-role">PHỤ TÁ</td><td>Phụ tá chuẩn bị hoa, nơ, cà vạt, voan cho buổi chụp</td><td></td><td></td></tr>
-                        <tr><td>Phụ tá hỗ trợ chú rể thử vest, vuốt tóc</td><td></td><td></td></tr>
                         <tr><td rowspan="10" class="col-time">TRONG<br>BUỔI CHỤP</td><td rowspan="6" class="col-role">EKIP</td><td>Nhiếp ảnh gia tư vấn góc chụp cho khách hàng</td><td></td><td></td></tr>
                         <tr><td>Makeup tư vấn tone makeup, kiểu tóc và phụ kiện cho khách hàng</td><td></td><td></td></tr>
                         <tr><td>Nhiếp ảnh gia chụp theo sở thích của khách hàng</td><td></td><td></td></tr>
@@ -383,7 +381,6 @@
                         <tr><td class="center bold">STUDIO</td><td></td><td></td><td></td><td></td><td></td></tr>
                         <tr><td class="center bold">NHIẾP ẢNH GIA</td><td></td><td></td><td></td><td></td><td></td></tr>
                         <tr><td class="center bold">MAKEUP</td><td></td><td></td><td></td><td></td><td></td></tr>
-                        <tr><td class="center bold">PHỤ TÁ</td><td></td><td></td><td></td><td></td><td></td></tr>
                         <tr><td class="center bold">TƯ VẤN VIÊN</td><td></td><td></td><td></td><td></td><td></td></tr>
                     </tbody>
                 </table>
